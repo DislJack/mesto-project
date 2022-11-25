@@ -1,0 +1,17 @@
+.form__fieldset {
+  border: none;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  width: 83.25%;
+  margin: 30px auto 0;
+  padding: 0 0 13px 0;
+}
+
+.form__fieldset:first-of-type {
+  margin-top: 54px;
+}
+
+@media (max-width: 767px) {
+  .form__fieldset:first-of-type {
+    margin-top: 75px;
+  }
+}
