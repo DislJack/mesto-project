@@ -15,22 +15,6 @@
 @import url(../blocks/header/header.css); /* Размер ширины блока, а так же нижняя граница */
 @import url(../blocks/header/__logo/header__logo.css); /* Размеры логотипа и отступы */
 
-/* Импорт секции pop-up */
-
-@import url(../blocks/popup/popup.css); /* Позиционирование popup, центрирование и фон */
-@import url(../blocks/form/form.css); /* Фон формы, центрирование формы, радиус у border */
-@import url(../blocks/form/__fieldset/form__fieldset.css); /* Ширина блока, центрирование и отступы */
-@import url(../blocks/form/__title/form__title.css); /* Стили заголовка, отступы и центрирование */
-@import url(../blocks/form/__name/form__name.css); /* Стили для шрифта с полем имени */
-@import url(../blocks/form/__job/form__job.css); /* Стили для шрифта с полем работа */
-@import url(../blocks/form/__buttons/form__buttons.css); /* Ширина блока и центрирование кнопок */
-@import url(../blocks/form/__submit-button/form__submit-button.css); /* Размер кнопки, цвет фона и прозрачность */
-@import url(../blocks/form/__close-button/form__close-button.css); /* Абсолютное позиционирование кнопки, цвет прозрачного фона и размеры */
-
-/* активирование popup */
-
-@import url(../blocks/popup/_opened/popup_opened.css); /* Приведение popup в активное состояние */
-
 /* Импорт секции profile */
 
 @import url(../blocks/profile/profile.css); /* Flex, ширина блока, отступы и позиционирование внутренних элементов */
@@ -50,8 +34,22 @@
 @import url(../blocks/element/__description/element__description.css); /* Flex, отступы и расположение в пространстве элементов. */
 @import url(../blocks/element/__title/element__title.css); /* Стили для заголовка и отступы */
 @import url(../blocks/element/__like/element__like.css); /* Картинка для кнопки, её позиционирование и фон с отступами. */
+@import url(../blocks/element/__like/_active/element__like_active.css); /* Чёрное, залитое сердечка */
 
 /* Импорт подвала */
 
 @import url(../blocks/footer/footer.css); /* Ширина блока, отступы и выравнивание */
 @import url(../blocks/footer/__copyright/footer__copyright.css); /* Стили для подписи прав копирайтинга */
+
+/* Импорт секции pop-up */
+
+@import url(../blocks/popup/popup.css); /* Позиционирование popup, центрирование и фон */
+@import url(../blocks/form/form.css); /* Фон формы, центрирование формы, радиус у border */
+@import url(../blocks/form/__title/form__title.css); /* Стили заголовка, отступы и центрирование */
+@import url(../blocks/form/__input/form__input.css); /*  */
+@import url(../blocks/form/__submit-button/form__submit-button.css); /* Размер кнопки, цвет фона и прозрачность */
+@import url(../blocks/form/__close-button/form__close-button.css); /* Абсолютное позиционирование кнопки, цвет прозрачного фона и размеры */
+
+/* активирование popup */
+
+@import url(../blocks/popup/_opened/popup_opened.css); /* Приведение popup в активное состояние */

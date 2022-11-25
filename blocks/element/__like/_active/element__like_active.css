@@ -1,7 +1,7 @@
-.element__like {
-  background-image: url(../../../images/icon_type_heart.png);
-  background-repeat: no-repeat;
+.element__like_active {
+  background-image: url(../../../../images/icon_type_heart-dark.png);
   background-position: center;
+  background-repeat: no-repeat;
   background-color: #fff;
   min-width: 22px;
   padding: 0;
@@ -10,7 +10,7 @@
   transition: 0.2s;
 }
 
-.element__like:hover {
+.element__like_active:hover {
   opacity: 0.5;
   cursor: pointer;
 }

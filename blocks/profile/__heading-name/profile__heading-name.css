@@ -7,6 +7,9 @@
   color: #fff;
   margin: 0;
   width: auto;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 @media (max-width: 767px) {
