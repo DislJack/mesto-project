@@ -44,9 +44,10 @@
 /* Импорт секции pop-up */
 
 @import url(../blocks/popup/popup.css); /* Позиционирование popup, центрирование и фон */
+@import url(../blocks/popup/__container/popup__container.css); /* Белый цвет окошка */
 @import url(../blocks/form/form.css); /* Фон формы, центрирование формы, радиус у border */
 @import url(../blocks/form/__title/form__title.css); /* Стили заголовка, отступы и центрирование */
-@import url(../blocks/form/__input/form__input.css); /*  */
+@import url(../blocks/form/__input/form__input.css); /* Стили для всех инпутов по тексту и отступам */
 @import url(../blocks/form/__submit-button/form__submit-button.css); /* Размер кнопки, цвет фона и прозрачность */
 @import url(../blocks/form/__close-button/form__close-button.css); /* Абсолютное позиционирование кнопки, цвет прозрачного фона и размеры */
 
