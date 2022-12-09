@@ -35,3 +35,19 @@ function formSubmitHandler(evt) {
 formElement.addEventListener('submit', formSubmitHandler);
 let submitButton = document.querySelector('.form__submit-button');
 submitButton.addEventListener('click', popupOpened);
+
+// Функция описания смены цвета лайк элемента
+
+let likeButtons = document.querySelectorAll('.element__like');
+let index = 0;
+
+for (i = 0; i < likeButtons.length; i++) {
+  let index = i;
+  likeButtons[i].addEventListener('click', () => { // тут проблема с i оно не передаётся
+    if (likeButtons[index].classList.contains('element__like_active') === true) {
+      likeButtons[index].classList.remove('element__like_active');
+    } else {
+      likeButtons[index].classList.add('element__like_active');
+    }
+  });
+}
