@@ -40,7 +40,6 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
   ];
-  console.log(initialCards);
 
 // Функции
 // Функция открытия popup контейнеров
@@ -60,6 +59,22 @@ function formSubmitHandler(evt) {
   let job = document.querySelector('.profile__job');
   name.textContent = nameInput.value;
   job.textContent = jobInput.value;
+}
+
+// Функция добавления карточке на страницу
+function addCardsBlock(i) {
+  const elementTemplate = document.querySelector('#element').content;
+  const element = elementTemplate.querySelector('.element').cloneNode(true);
+  element.querySelector('.element__delete').addEventListener('click', function (evt) {
+    evt = element.closest('.element');
+    evt.remove();
+  });
+  element.querySelector('.element__like').addEventListener('click', function (evt) {
+    evt.target.classList.toggle('element__like_active');
+  });
+  element.querySelector('.element__image').src = initialCards[i].link;
+  element.querySelector('.element__title').textContent = initialCards[i].name;
+  elements.append(element);
 }
 
 // Функция добавления карточки
@@ -85,6 +100,11 @@ function formSubmitCard(evt) {
 }
 
 // Логика управления элементами
+// Добавление карточке через js
+for (let i = 0; i < initialCards.length; i++) {
+  addCardsBlock(i);
+}
+
 // Открыли popup контейнеры
 editButton.addEventListener('click', () => {
   popupOpened(0);
