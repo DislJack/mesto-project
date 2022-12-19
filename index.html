@@ -25,6 +25,7 @@
     </section>
     <section class="elements">
       <article class="element">
+        <button type="button" class="element__delete" aria-label="Удалить"></button>
         <img class="element__image" src="images/element_type_karachaevo-cherkhesiya.png" alt="Карачаево-Черкесия">
         <div class="element__description">
           <h2 class="element__title">Карачаевск</h2>
@@ -32,6 +33,7 @@
         </div>
       </article>
       <article class="element">
+        <button type="button" class="element__delete" aria-label="Удалить"></button>
         <img class="element__image" src="images/element_type_elbrus.png" alt="Гора Эльбрус">
         <div class="element__description">
           <h2 class="element__title">Гора Эльбрус</h2>
@@ -39,6 +41,7 @@
         </div>
       </article>
       <article class="element">
+        <button type="button" class="element__delete" aria-label="Удалить"></button>
         <img class="element__image" src="images/element_type_dombai.png" alt="Домбай">
         <div class="element__description">
           <h2 class="element__title">Домбай</h2>
@@ -46,6 +49,7 @@
         </div>
       </article>
       <article class="element">
+        <button type="button" class="element__delete" aria-label="Удалить"></button>
         <img class="element__image" src="images/element_type_elbrus.png" alt="Гора Эльбрус">
         <div class="element__description">
           <h2 class="element__title">Гора Эльбрус</h2>
@@ -53,6 +57,7 @@
         </div>
       </article>
       <article class="element">
+        <button type="button" class="element__delete" aria-label="Удалить"></button>
         <img class="element__image" src="images/element_type_dombai.png" alt="Домбай">
         <div class="element__description">
           <h2 class="element__title">Домбай</h2>
@@ -60,6 +65,7 @@
         </div>
       </article>
       <article class="element">
+        <button type="button" class="element__delete" aria-label="Удалить"></button>
         <img class="element__image" src="images/element_type_karachaevo-cherkhesiya.png" alt="Карачаево-Черкесия">
         <div class="element__description">
           <h2 class="element__title">Карачаево-Черкесия</h2>
@@ -86,13 +92,23 @@
     <div class="popup__container">
       <button class="form__close-button" type="button" name="close-button" aria-label="Закрыть"></button>
       <h2 class="form__title">Новое место</h2>
-      <form class="form" name="form">
+      <form class="form" name="formCard">
         <input class="form__input" type="text" name="name-place" placeholder="Название" required>
         <input class="form__input" type="text" name="link" placeholder="Ссылка на картинку" required>
         <button class="form__submit-button" type="submit" name="submit-button">Создать</button>
       </form>
     </div>
   </div>
+  <template id="element">
+    <article class="element">
+      <button type="button" class="element__delete" aria-label="Удалить"></button>
+      <img class="element__image">
+      <div class="element__description">
+        <h2 class="element__title"></h2>
+        <button type="button" class="element__like" aria-label="Понравилось"></button>
+      </div>
+    </article>
+  </template>
   <script src="js/index.js"></script>
 </body>
 </html>

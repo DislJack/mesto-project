@@ -35,6 +35,7 @@
 @import url(../blocks/element/__title/element__title.css); /* Стили для заголовка и отступы */
 @import url(../blocks/element/__like/element__like.css); /* Картинка для кнопки, её позиционирование и фон с отступами. */
 @import url(../blocks/element/__like/_active/element__like_active.css); /* Чёрное, залитое сердечка */
+@import url(../blocks/element/__delete/element__delete.css); /* Удаление элемента */
 
 /* Импорт подвала */
 
