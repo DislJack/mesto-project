@@ -1,5 +1,4 @@
 // Переменные и постоянные
-
 const formElement = document.querySelector('form[name=form]');
 const nameInput = document.querySelector('input[name=name]');
 const jobInput = document.querySelector('input[name=job]');
@@ -13,7 +12,6 @@ const titleInput = document.querySelector('input[name=name-place]');
 const linkInput = document.querySelector('input[name=link]');
 const formCard = document.querySelector('form[name=formCard]');
 const deleteButton = document.querySelectorAll('.element__delete');
-
 const initialCards = [
   {
     name: 'Архыз',
@@ -44,7 +42,7 @@ const initialCards = [
 // Функции
 // Функция открытия popup контейнеров
 function popupOpened(index) {
-  let popupOpened = document.querySelectorAll('.popup');
+  const popupOpened = document.querySelectorAll('.popup');
   if (popupOpened[index].classList.contains('popup_opened') === true) {
     popupOpened[index].classList.remove('popup_opened');
   } else {
@@ -55,8 +53,8 @@ function popupOpened(index) {
 // Функция настройки ввода формы
 function formSubmitHandler(evt) {
   evt.preventDefault();
-  let name = document.querySelector('.profile__heading-name');
-  let job = document.querySelector('.profile__job');
+  const name = document.querySelector('.profile__heading-name');
+  const job = document.querySelector('.profile__job');
   name.textContent = nameInput.value;
   job.textContent = jobInput.value;
 }
@@ -114,11 +112,6 @@ function formSubmitCard(evt) {
 }
 
 // Логика управления элементами
-// Добавление карточке через js
-for (let i = 0; i < initialCards.length; i++) {
-  addCardsBlock(i);
-}
-
 // Открыли popup контейнеры
 editButton.addEventListener('click', () => {
   popupOpened(0);
@@ -145,4 +138,9 @@ for (let i = 0; i < submitButton.length; i++) {
     index = i;
     popupOpened(index);
   }, false);
+}
+
+// Добавление карточке через js
+for (let i = 0; i < initialCards.length; i++) {
+  addCardsBlock(i);
 }
