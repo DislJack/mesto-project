@@ -71,6 +71,7 @@ function addCardsBlock(i) {
     popupOpened(2);
     const figureImage = document.querySelector('.figure__image');
     figureImage.src = initialCards[i].link;
+    figureImage.alt = initialCards[i].name;
     const figureCaption = document.querySelector('.figure__caption');
     figureCaption.textContent = initialCards[i].name;
   });
@@ -94,6 +95,7 @@ function addCard() {
     popupOpened(2);
     const figureImage = document.querySelector('.figure__image');
     figureImage.src = linkInput.value;
+    figureImage.alt = titleInput.value;
     const figureCaption = document.querySelector('.figure__caption');
     figureCaption.textContent = titleInput.value;
   });
