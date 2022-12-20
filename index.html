@@ -50,10 +50,18 @@
       </form>
     </div>
   </div>
+  <div class="popup">
+    <figure class="figure">
+      <button class="form__close-button" type="button" name="close-button" aria-label="Закрыть"></button>
+      <img class="figure__image">
+      <figcaption class="figure__caption"></figcaption>
+    </figure>
+  </div>
   <template id="element">
     <article class="element">
       <button type="button" class="element__delete" aria-label="Удалить"></button>
       <img class="element__image">
+      <div class="element__overlay"></div>
       <div class="element__description">
         <h2 class="element__title"></h2>
         <button type="button" class="element__like" aria-label="Понравилось"></button>

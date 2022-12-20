@@ -61,13 +61,20 @@ function formSubmitHandler(evt) {
   job.textContent = jobInput.value;
 }
 
-// Функция добавления карточке на страницу
+// Функция добавления карточек на страницу
 function addCardsBlock(i) {
   const elementTemplate = document.querySelector('#element').content;
   const element = elementTemplate.querySelector('.element').cloneNode(true);
   element.querySelector('.element__delete').addEventListener('click', function (evt) {
     evt = element.closest('.element');
     evt.remove();
+  });
+  element.querySelector('.element__overlay').addEventListener('click', function () {
+    popupOpened(2);
+    const figureImage = document.querySelector('.figure__image');
+    figureImage.src = initialCards[i].link;
+    const figureCaption = document.querySelector('.figure__caption');
+    figureCaption.textContent = initialCards[i].name;
   });
   element.querySelector('.element__like').addEventListener('click', function (evt) {
     evt.target.classList.toggle('element__like_active');
@@ -84,6 +91,13 @@ function addCard() {
   element.querySelector('.element__delete').addEventListener('click', function (evt) {
     evt = element.closest('.element');
     evt.remove();
+  });
+  element.querySelector('.element__overlay').addEventListener('click', function () {
+    popupOpened(2);
+    const figureImage = document.querySelector('.figure__image');
+    figureImage.src = linkInput.value;
+    const figureCaption = document.querySelector('.figure__caption');
+    figureCaption.textContent = titleInput.value;
   });
   element.querySelector('.element__like').addEventListener('click', function (evt) {
     evt.target.classList.toggle('element__like_active');
@@ -114,41 +128,21 @@ addButton.addEventListener('click', () => {
 }, false);
 
 // Кнопки закрыть на popup контейнерах
-closeButton[0].addEventListener('click', () => {
-  popupOpened(0);
-}, false);
-closeButton[1].addEventListener('click', () => {
-  popupOpened(1);
-}, false)
+for (let i = 0; i < closeButton.length; i++) {
+  closeButton[i].addEventListener('click', (index) => {
+    index = i;
+    popupOpened(index);
+  }, false);
+}
 
 // Изменение данных в форме при сохранении формы
 formElement.addEventListener('submit', formSubmitHandler);
 formCard.addEventListener('submit', formSubmitCard);
 
 // Кнопки подтвердить отправку форму на закрытие
-submitButton[0].addEventListener('click', () => {
-  popupOpened(0);
-}, false);
-submitButton[1].addEventListener('click', () => {
-  popupOpened(1);
-}, false)
-
-// Меняем цвет лайк кнопки
-for (i = 0; i < likeButtons.length; i++) {
-  let index = i;
-  likeButtons[i].addEventListener('click', () => {
-    if (likeButtons[index].classList.contains('element__like_active') === true) {
-      likeButtons[index].classList.remove('element__like_active');
-    } else {
-      likeButtons[index].classList.add('element__like_active');
-    }
-  });
-}
-
-for (let i = 0; i < deleteButton.length; i++) {
-  let index = i;
-  deleteButton[i].addEventListener('click', () => {
-    const element = deleteButton[index].closest('.element');
-    element.remove();
-  });
+for (let i = 0; i < submitButton.length; i++) {
+  submitButton[i].addEventListener('click', (index) => {
+    index = i;
+    popupOpened(index);
+  }, false);
 }

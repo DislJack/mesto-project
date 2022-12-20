@@ -36,6 +36,7 @@
 @import url(../blocks/element/__like/element__like.css); /* Картинка для кнопки, её позиционирование и фон с отступами. */
 @import url(../blocks/element/__like/_active/element__like_active.css); /* Чёрное, залитое сердечка */
 @import url(../blocks/element/__delete/element__delete.css); /* Удаление элемента */
+@import url(../blocks/element/__overlay/element__overlay.css); /* Оверлей на картинку */
 
 /* Импорт подвала */
 
@@ -53,5 +54,9 @@
 @import url(../blocks/form/__close-button/form__close-button.css); /* Абсолютное позиционирование кнопки, цвет прозрачного фона и размеры */
 
 /* активирование popup */
-
 @import url(../blocks/popup/_opened/popup_opened.css); /* Приведение popup в активное состояние */
+
+/* Блоки с figure */
+@import url(../blocks/figure/figure.css); /* Позиционирование и отступы */
+@import url(../blocks/figure/__image/figure__image.css); /* Размеры картинки */
+@import url(../blocks/figure/__caption/figure__caption.css); /* Стили для подписи */

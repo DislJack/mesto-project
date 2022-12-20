@@ -12,6 +12,7 @@
   top: 20px;
   opacity: 1;
   transition: 0.3s;
+  z-index: 1;
 }
 
 .element__delete:hover {
