@@ -2,9 +2,12 @@
 const formElement = document.querySelector('form[name=form]');
 const nameInput = document.querySelector('input[name=name]');
 const jobInput = document.querySelector('input[name=job]');
+const profilePopup = document.querySelector('.profile-popup');
+const addPopup = document.querySelector('.add-popup');
+const picturePopup = document.querySelector('.picture-popup');
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
-const closeButton = document.querySelectorAll('.form__close-button');
+const closeButtons = document.querySelectorAll('.form__close-button');
 const submitButton = document.querySelectorAll('.form__submit-button');
 const likeButtons = document.querySelectorAll('.element__like');
 const elements = document.querySelector('.elements');
@@ -41,22 +44,22 @@ const initialCards = [
 
 // Функции
 // Функция открытия popup контейнеров
-function popupOpened(index) {
-  const popupOpened = document.querySelectorAll('.popup');
-  if (popupOpened[index].classList.contains('popup_opened') === true) {
-    popupOpened[index].classList.remove('popup_opened');
-  } else {
-    popupOpened[index].classList.add('popup_opened');
-  }
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+}
+
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
 }
 
 // Функция настройки ввода формы
 function formSubmitHandler(evt) {
   evt.preventDefault();
-  const name = document.querySelector('.profile__heading-name');
-  const job = document.querySelector('.profile__job');
+  let name = document.querySelector('.profile__heading-name');
+  let job = document.querySelector('.profile__job');
   name.textContent = nameInput.value;
   job.textContent = jobInput.value;
+  closePopup(profilePopup);
 }
 
 // Функция добавления карточек на страницу
@@ -68,7 +71,7 @@ function addCardsBlock(i) {
     evt.remove();
   });
   element.querySelector('.element__overlay').addEventListener('click', function () {
-    popupOpened(2);
+    openPopup(picturePopup);
     const figureImage = document.querySelector('.figure__image');
     figureImage.src = initialCards[i].link;
     figureImage.alt = initialCards[i].name;
@@ -92,7 +95,7 @@ function addCard() {
     evt.remove();
   });
   element.querySelector('.element__overlay').addEventListener('click', function () {
-    popupOpened(2);
+    openPopup(profilePopup);
     const figureImage = document.querySelector('.figure__image');
     figureImage.src = linkInput.value;
     figureImage.alt = titleInput.value;
@@ -111,38 +114,25 @@ function addCard() {
 function formSubmitCard(evt) {
   evt.preventDefault();
   addCard();
+  closePopup(addPopup);
 }
 
 // Логика управления элементами
 // Открыли popup контейнеры
-editButton.addEventListener('click', () => {
-  popupOpened(0);
-}, false);
-addButton.addEventListener('click', () => {
-  popupOpened(1);
-}, false);
+editButton.addEventListener('click', () => openPopup(profilePopup));
+addButton.addEventListener('click', () => openPopup(addPopup));
 
 // Кнопки закрыть на popup контейнерах
-for (let i = 0; i < closeButton.length; i++) {
-  closeButton[i].addEventListener('click', (index) => {
-    index = i;
-    popupOpened(index);
-  }, false);
-}
+closeButtons.forEach((button) => {
+  const popup = button.closest('.popup');
+  button.addEventListener('click', () => closePopup(popup));
+});
 
 // Изменение данных в форме при сохранении формы
 formElement.addEventListener('submit', formSubmitHandler);
 formCard.addEventListener('submit', formSubmitCard);
 
-// Кнопки подтвердить отправку форму на закрытие
-for (let i = 0; i < submitButton.length; i++) {
-  submitButton[i].addEventListener('click', (index) => {
-    index = i;
-    popupOpened(index);
-  }, false);
-}
-
-// Добавление карточке через js
+// Добавление карточек через js
 for (let i = 0; i < initialCards.length; i++) {
   addCardsBlock(i);
 }
