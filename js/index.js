@@ -15,6 +15,8 @@ const titleInput = document.querySelector('input[name=name-place]');
 const linkInput = document.querySelector('input[name=link]');
 const formCard = document.querySelector('form[name=formCard]');
 const deleteButton = document.querySelectorAll('.element__delete');
+let figureImage = document.querySelector('.figure__image');
+let figureCaption = document.querySelector('.figure__caption');
 const initialCards = [
   {
     name: 'Архыз',
@@ -48,12 +50,13 @@ function openPopup(popup) {
   popup.classList.add('popup_opened');
 }
 
+// функция закрытия popup контейнеров
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
 
 // Функция настройки ввода формы
-function formSubmitHandler(evt) {
+function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   let name = document.querySelector('.profile__heading-name');
   let job = document.querySelector('.profile__job');
@@ -72,10 +75,8 @@ function addCardsBlock(i) {
   });
   element.querySelector('.element__overlay').addEventListener('click', function () {
     openPopup(picturePopup);
-    const figureImage = document.querySelector('.figure__image');
     figureImage.src = initialCards[i].link;
     figureImage.alt = initialCards[i].name;
-    const figureCaption = document.querySelector('.figure__caption');
     figureCaption.textContent = initialCards[i].name;
   });
   element.querySelector('.element__like').addEventListener('click', function (evt) {
@@ -96,10 +97,8 @@ function addCard() {
   });
   element.querySelector('.element__overlay').addEventListener('click', function () {
     openPopup(profilePopup);
-    const figureImage = document.querySelector('.figure__image');
     figureImage.src = linkInput.value;
     figureImage.alt = titleInput.value;
-    const figureCaption = document.querySelector('.figure__caption');
     figureCaption.textContent = titleInput.value;
   });
   element.querySelector('.element__like').addEventListener('click', function (evt) {
@@ -111,9 +110,10 @@ function addCard() {
 }
 
 // Функция подтверждения формы загрузки карточки
-function formSubmitCard(evt) {
+function handleCardFormSubmit(evt) {
   evt.preventDefault();
   addCard();
+  evt.target.reset();
   closePopup(addPopup);
 }
 
@@ -129,8 +129,8 @@ closeButtons.forEach((button) => {
 });
 
 // Изменение данных в форме при сохранении формы
-formElement.addEventListener('submit', formSubmitHandler);
-formCard.addEventListener('submit', formSubmitCard);
+formElement.addEventListener('submit', handleProfileFormSubmit);
+formCard.addEventListener('submit', handleCardFormSubmit);
 
 // Добавление карточек через js
 for (let i = 0; i < initialCards.length; i++) {
