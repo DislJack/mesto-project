@@ -8,7 +8,6 @@ const picturePopup = document.querySelector('.picture-popup');
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
 const closeButtons = document.querySelectorAll('.form__close-button');
-const submitButton = document.querySelectorAll('.form__submit-button');
 const likeButtons = document.querySelectorAll('.element__like');
 const elements = document.querySelector('.elements');
 const titleInput = document.querySelector('input[name=name-place]');
@@ -18,6 +17,8 @@ const deleteButton = document.querySelectorAll('.element__delete');
 const elementTemplate = document.querySelector('#element').content;
 const figureImage = document.querySelector('.figure__image');
 const figureCaption = document.querySelector('.figure__caption');
+const nameProfile = document.querySelector('.profile__heading-name');
+const jobProfile = document.querySelector('.profile__job');
 const initialCards = [
   {
     name: 'Архыз',
@@ -59,10 +60,8 @@ function closePopup(popup) {
 // Функция настройки ввода формы
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
-  let name = document.querySelector('.profile__heading-name');
-  let job = document.querySelector('.profile__job');
-  name.textContent = nameInput.value;
-  job.textContent = jobInput.value;
+  nameProfile.textContent = nameInput.value;
+  jobProfile.textContent = jobInput.value;
   closePopup(profilePopup);
 }
 
