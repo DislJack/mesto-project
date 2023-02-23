@@ -86,11 +86,81 @@ function createCard(linkValue, titleValue) {
   return element;
 }
 
+// Функция отображения сообщения об ощибке
+function showInputError(element, error) {
+  const errorMessage = document.querySelector(`.${element.id}-error`);
+  errorMessage.classList.add('form__input-error_active');
+  errorMessage.textContent = error;
+  element.classList.add('form__input_type_error');
+}
+
+// Функция удаления сообщения об ошибке
+function hideInputError(element) {
+  const errorMessage = document.querySelector(`.${element.id}-error`);
+  errorMessage.classList.remove('form__input-error_active');
+  errorMessage.textContent = '';
+  element.classList.remove('form__input_type_error');
+}
+
+// Функция проверки валидности поля ввода
+function isValid(input) {
+  if (!input.value.length) {
+    input.setCustomValidity(input.dataset.errorMessage);
+  } else {
+    input.setCustomValidity('');
+  }
+  if (!input.validity.valid) {
+    showInputError(input, input.validationMessage);
+  } else {
+    hideInputError(input);
+  }
+}
+
+// Функция проверки всех полей ввода
+function hasInvalidInput(inputList) {
+  return inputList.some((input) => {
+    return !input.validity.valid;
+  });
+}
+
+// Функция деактивации кнопки
+function toggleButtonState(inputList, submitButton) {
+  if (hasInvalidInput(inputList)) {
+    submitButton.disabled = true;
+    submitButton.classList.add('form__submit-button_type_error');
+  } else {
+    submitButton.disabled = false;
+    submitButton.classList.remove('form__submit-button_type_error');
+  }
+}
+
+// Функция добавления слушателей на каждое поле ввода
+function setEventListeners(form) {
+  const inputList = Array.from(form.querySelectorAll('.form__input'));
+  const submitButton = form.querySelector('.form__submit-button');
+  toggleButtonState(inputList, submitButton);
+  inputList.forEach((input) => {
+    input.addEventListener('input', () => {
+      isValid(input);
+      toggleButtonState(inputList, submitButton);
+    });
+  });
+}
+
+// Функция валидации формы
+function enableValidation() {
+  const formList = Array.from(document.querySelectorAll('.form'));
+  formList.forEach((form) => {
+    setEventListeners(form);
+  });
+}
+
 // Функция подтверждения формы загрузки карточки
 function handleCardFormSubmit(evt) {
   evt.preventDefault();
   elements.prepend(createCard(linkInput.value, titleInput.value));
   evt.target.reset();
+  enableValidation();
   closePopup(addPopup);
 }
 
@@ -113,3 +183,5 @@ formCard.addEventListener('submit', handleCardFormSubmit);
 for (let i = 0; i < initialCards.length; i++) {
   elements.append(createCard(initialCards[i].link, initialCards[i].name));
 }
+
+enableValidation();
