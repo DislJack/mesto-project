@@ -33,9 +33,9 @@
       <button class="form__close-button" type="button" name="close-button" aria-label="Закрыть"></button>
       <h2 class="form__title">Редактировать профиль</h2>
       <form class="form" name="form" novalidate>
-        <input id="name" class="form__input" type="text" name="name" value="Жак-Ив Кусто" placeholder="Введите своё имя" data-error-message="Вы пропустили это поле." minlength="2" maxlength="40" required>
+        <input id="name" class="form__input" type="text" name="name" value="Жак-Ив Кусто" placeholder="Введите своё имя" data-error-message="Вы пропустили это поле." data-error="Используйте только латинские и кирилистические символы, а так же дефис и пробелы." pattern="[A-Za-z-А-Яа-яЁё\s\-]+$" minlength="2" maxlength="40" required>
         <p class="name-error form__input-error"></p>
-        <input id="job" class="form__input" type="text" name="job" value="Исследователь океана" placeholder="Введите свою должность" data-error-message="Вы пропустили это поле." minlength="2" maxlength="400" required>
+        <input id="job" class="form__input" type="text" name="job" value="Исследователь океана" placeholder="Введите свою должность" data-error-message="Вы пропустили это поле." data-error="Используйте только латинские и кирилистические символы, а так же дефис и пробелы." pattern="[A-Za-z-А-Яа-яЁё\s\-]+$" minlength="2" maxlength="400" required>
         <p class="job-error form__input-error"></p>
         <button class="form__submit-button" type="submit" name="submit-button">Сохранить</button>
       </form>
@@ -46,7 +46,7 @@
       <button class="form__close-button" type="button" name="close-button" aria-label="Закрыть"></button>
       <h2 class="form__title">Новое место</h2>
       <form class="form" name="formCard" novalidate>
-        <input id="name-place" class="form__input" type="text" name="name-place" placeholder="Название" data-error-message="Вы пропустили это поле." minlength="2" maxlength="30" required>
+        <input id="name-place" class="form__input" type="text" name="name-place" placeholder="Название" pattern="[A-Za-z-А-Яа-яЁё\s\-]+$" data-error-message="Вы пропустили это поле." data-error="Используйте только латинские и кирилистические символы, а так же дефис и пробелы." minlength="2" maxlength="30"  required>
         <p class="name-place-error form__input-error"></p>
         <input id="link" class="form__input" type="url" name="link" placeholder="Ссылка на картинку" data-error-message="Введите адрес сайта." required>
         <p class="link-error form__input-error"></p>

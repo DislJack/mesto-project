@@ -19,6 +19,7 @@ const figureImage = document.querySelector('.figure__image');
 const figureCaption = document.querySelector('.figure__caption');
 const nameProfile = document.querySelector('.profile__heading-name');
 const jobProfile = document.querySelector('.profile__job');
+const popups = document.querySelectorAll('.popup');
 const initialCards = [
   {
     name: 'Архыз',
@@ -44,7 +45,7 @@ const initialCards = [
     name: 'Байкал',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
-  ];
+];
 
 // Функции
 // Функция открытия popup контейнеров
@@ -65,6 +66,7 @@ function handleProfileFormSubmit(evt) {
   closePopup(profilePopup);
 }
 
+// Функция создания карточек
 function createCard(linkValue, titleValue) {
   const element = elementTemplate.querySelector('.element').cloneNode(true);
   element.querySelector('.element__delete').addEventListener('click', function (evt) {
@@ -104,7 +106,9 @@ function hideInputError(element) {
 
 // Функция проверки валидности поля ввода
 function isValid(input) {
-  if (!input.value.length) {
+  if (input.validity.patternMismatch) {
+    input.setCustomValidity(input.dataset.error);
+  } else if (!input.value.length) {
     input.setCustomValidity(input.dataset.errorMessage);
   } else {
     input.setCustomValidity('');
@@ -183,5 +187,19 @@ formCard.addEventListener('submit', handleCardFormSubmit);
 for (let i = 0; i < initialCards.length; i++) {
   elements.append(createCard(initialCards[i].link, initialCards[i].name));
 }
+
+// Закрытие popup контейнера с помощью Escape и кликом на оверлей
+popups.forEach((popup) => {
+  popup.addEventListener('click', (evt) => {
+    closePopup(evt.target);
+  });
+  document.addEventListener('keydown', (evt) => {
+    if (popup.classList.contains('popup_opened')) {
+      if (evt.key === 'Escape') {
+        closePopup(popup);
+      } 
+    }
+  });
+});
 
 enableValidation();
