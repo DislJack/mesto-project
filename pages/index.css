@@ -50,7 +50,11 @@
 @import url(../blocks/form/form.css); /* Фон формы, центрирование формы, радиус у border */
 @import url(../blocks/form/__title/form__title.css); /* Стили заголовка, отступы и центрирование */
 @import url(../blocks/form/__input/form__input.css); /* Стили для всех инпутов по тексту и отступам */
+@import url(../blocks/form/__input/_type/form__input_type_error.css); /* Стили которые появляются при ошибки валидации в форме */
+@import url(../blocks/form/__input-error/form__input-error.css); /* Стили для всех текстовых ошибок */
+@import url(../blocks/form/__input-error/_active/form__input-error_active.css); /* Отображение ошибки */
 @import url(../blocks/form/__submit-button/form__submit-button.css); /* Размер кнопки, цвет фона и прозрачность */
+@import url(../blocks/form/__submit-button/_type/form__submit-button_type_error.css); /* Стили для неактивной кнопки */
 @import url(../blocks/form/__close-button/form__close-button.css); /* Абсолютное позиционирование кнопки, цвет прозрачного фона и размеры */
 
 /* активирование popup */
