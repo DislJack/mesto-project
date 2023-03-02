@@ -81,7 +81,7 @@ for (let i = 0; i < initialCards.length; i++) {
 
 // Закрытие popup контейнера с помощью Escape и кликом на оверлей
 popups.forEach((popup) => {
-  popup.addEventListener('click', (evt) => {
+  popup.addEventListener('mousedown', (evt) => {
     closePopup(evt.target);
   });
   document.addEventListener('keydown', (evt) => {
