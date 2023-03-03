@@ -1,3 +1,5 @@
+import '../pages/index.css';
+
 // Переменные и постоянные
 const formElement = document.querySelector('form[name=form]');
 const nameInput = document.querySelector('input[name=name]');
