@@ -58,7 +58,7 @@ export {elementTemplate, elements, linkInput, titleInput, addPopup, figureImage,
 
 import { openPopup, closePopup } from './utils.js';
 import createCard from './card.js';
-import enableValidation from "./validate.js";
+import {enableValidation} from "./validate.js";
 import { handleCardFormSubmit, handleProfileFormSubmit } from './modal.js';
 
 // Логика управления элементами
@@ -85,13 +85,6 @@ for (let i = 0; i < initialCards.length; i++) {
 popups.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
     closePopup(evt.target);
-  });
-  document.addEventListener('keydown', (evt) => {
-    if (popup.classList.contains('popup_opened')) {
-      if (evt.key === 'Escape') {
-        closePopup(popup);
-      } 
-    }
   });
 });
 
