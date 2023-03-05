@@ -54,7 +54,10 @@ const validationSettings = {
   inputErrorClass: 'form__input_type_error',
   errorClass: 'form__input-error_active'
 }
-export {elementTemplate, elements, linkInput, titleInput, addPopup, figureImage, figureCaption, picturePopup, nameProfile, jobProfile, nameInput, jobInput, profilePopup, validationSettings};
+const inputListCards = Array.from(formCard.querySelectorAll(validationSettings.inputSelector));
+const submitButtonCards = formCard.querySelector(validationSettings.submitButtonSelector);
+
+export {elementTemplate, elements, linkInput, titleInput, addPopup, figureImage, figureCaption, picturePopup, nameProfile, jobProfile, nameInput, jobInput, profilePopup, validationSettings, inputListCards, submitButtonCards};
 
 import { openPopup, closePopup } from './utils.js';
 import createCard from './card.js';
@@ -63,7 +66,11 @@ import { handleCardFormSubmit, handleProfileFormSubmit } from './modal.js';
 
 // Логика управления элементами
 // Открыли popup контейнеры
-editButton.addEventListener('click', () => openPopup(profilePopup));
+editButton.addEventListener('click', () => {
+  openPopup(profilePopup);
+  nameInput.value = nameProfile.textContent;
+  jobInput.value = jobProfile.textContent;
+});
 addButton.addEventListener('click', () => openPopup(addPopup));
 
 // Кнопки закрыть на popup контейнерах
