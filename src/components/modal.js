@@ -1,7 +1,7 @@
 import { closePopup } from "./utils.js";
 import {toggleButtonState} from "./validate.js";
 import createCard from "./card.js";
-import { nameProfile, jobProfile, linkInput, titleInput, addPopup, elements, nameInput, jobInput, profilePopup,  validationSettings, inputListCards, submitButtonCards } from "./index.js";
+import { nameProfile, jobProfile, linkInput, titleInput, addPopup, elements, nameInput, jobInput, profilePopup,  validationSettings, inputListCards, submitButtonCards, popupUpdate, avatar } from "./index.js";
 
 // Функция подтверждения формы загрузки карточки
 function handleCardFormSubmit(evt) {
@@ -20,4 +20,12 @@ function handleProfileFormSubmit(evt) {
   closePopup(profilePopup);
 }
 
-export {handleCardFormSubmit, handleProfileFormSubmit};
+function handleAvatarUpdate(evt) {
+  evt.preventDefault();
+  avatar.src = popupUpdate.querySelector('.form__input').value;
+  evt.target.reset();
+  toggleButtonState(Array.from(evt.target.querySelectorAll('.form__input')), evt.target.querySelector('.form__submit-button'), validationSettings);
+  closePopup(popupUpdate);
+}
+
+export {handleCardFormSubmit, handleProfileFormSubmit, handleAvatarUpdate};

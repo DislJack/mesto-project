@@ -13,7 +13,9 @@
   <main class="content">
     <section class="profile"> 
       <div class="profile__container">
-        <img class="profile__avatar" src="<%=require('./images/jack-iv-custo.jpg')%>" alt="Жак Ив Кусто">
+        <div class="profile__avatar-container">
+          <img class="profile__avatar" src="<%=require('./images/jack-iv-custo.jpg')%>" alt="Жак Ив Кусто">
+        </div>
         <div class="profile__info">
           <h1 class="profile__heading-name">Жак-Ив Кусто</h1>
           <button type="button" class="profile__edit-button" aria-label="Изменить"></button>
@@ -53,6 +55,17 @@
       </form>
     </div>
   </div>
+  <div class="popup popup-update">
+    <div class="popup__container">
+      <button class="form__close-button" type="button" name="close-button" aria-label="Закрыть"></button>
+      <h2 class="form__title">Обновить аватар</h2>
+      <form class="form" name="update" novalidate>
+        <input id="avatar" class="form__input" type="url" placeholder="Ссылка на новую картинку" data-error-message="Введите адрес сайта." required>
+        <p class="avatar-error form__input-error"></p>
+        <button class="form__submit-button" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </div>
   <div class="popup picture-popup">
     <figure class="figure">
       <button class="form__close-button" type="button" name="close-button" aria-label="Закрыть"></button>
@@ -67,7 +80,10 @@
       <div class="element__overlay"></div>
       <div class="element__description">
         <h2 class="element__title"></h2>
-        <button type="button" class="element__like" aria-label="Понравилось"></button>
+        <div class="element__like-container">
+          <button type="button" class="element__like" aria-label="Понравилось"></button>
+          <p class="element__like-count"></p>
+        </div>
       </div>
     </article>
   </template>

@@ -20,6 +20,9 @@ const figureCaption = document.querySelector('.figure__caption');
 const nameProfile = document.querySelector('.profile__heading-name');
 const jobProfile = document.querySelector('.profile__job');
 const popups = document.querySelectorAll('.popup');
+const avatarContainer = document.querySelector('.profile__avatar-container');
+const avatar = document.querySelector('.profile__avatar');
+const popupUpdate = document.querySelector('.popup-update');
 const initialCards = [
   {
     name: 'Архыз',
@@ -57,12 +60,12 @@ const validationSettings = {
 const inputListCards = Array.from(formCard.querySelectorAll(validationSettings.inputSelector));
 const submitButtonCards = formCard.querySelector(validationSettings.submitButtonSelector);
 
-export {elementTemplate, elements, linkInput, titleInput, addPopup, figureImage, figureCaption, picturePopup, nameProfile, jobProfile, nameInput, jobInput, profilePopup, validationSettings, inputListCards, submitButtonCards};
+export {elementTemplate, elements, linkInput, titleInput, addPopup, figureImage, figureCaption, picturePopup, nameProfile, jobProfile, nameInput, jobInput, profilePopup, validationSettings, inputListCards, submitButtonCards ,popupUpdate, avatar};
 
 import { openPopup, closePopup } from './utils.js';
 import createCard from './card.js';
 import {enableValidation} from "./validate.js";
-import { handleCardFormSubmit, handleProfileFormSubmit } from './modal.js';
+import { handleCardFormSubmit, handleProfileFormSubmit, handleAvatarUpdate } from './modal.js';
 
 // Логика управления элементами
 // Открыли popup контейнеры
@@ -79,9 +82,14 @@ closeButtons.forEach((button) => {
   button.addEventListener('click', () => closePopup(popup));
 });
 
+avatarContainer.addEventListener('click', () => {
+  openPopup(popupUpdate);
+});
+
 // Изменение данных в форме при сохранении формы
 formElement.addEventListener('submit', handleProfileFormSubmit);
 formCard.addEventListener('submit', handleCardFormSubmit);
+popupUpdate.addEventListener('submit', handleAvatarUpdate);
 
 // Добавление 6 карточек с помощью JS
 for (let i = 0; i < initialCards.length; i++) {

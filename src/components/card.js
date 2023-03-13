@@ -17,8 +17,21 @@ export default function createCard(linkValue, titleValue) {
     figureCaption.textContent = titleValue;
   });
   element.querySelector('.element__title').textContent = titleValue;
+  let count = 0;
   element.querySelector('.element__like').addEventListener('click', function (evt) {
-    evt.target.classList.toggle('element__like_active');
+    if (count === 0) {
+      element.querySelector('.element__like-count').classList.add('element__like-count_active');
+    }
+    if (evt.target.classList.toggle('element__like_active')) {
+      count++;
+      element.querySelector('.element__like-count').textContent = count;
+    } else {
+      count--;
+      element.querySelector('.element__like-count').textContent = count;
+    }
+    if (count === 0) {
+      element.querySelector('.element__like-count').classList.remove('element__like-count_active');
+    }
   });
   return element;
 }
