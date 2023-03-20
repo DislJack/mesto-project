@@ -41,6 +41,7 @@
 @import url(../blocks/element/__like/_active/element__like_active.css); /* Чёрное, залитое сердечка */
 @import url(../blocks/element/__delete/element__delete.css); /* Удаление элемента */
 @import url(../blocks/element/__overlay/element__overlay.css); /* Оверлей на картинку */
+@import url(../blocks/element/__delete/_disabled/element__delete_disabled.css); /* Неактивное состояние удаления карточки */
 
 /* Импорт подвала */
 

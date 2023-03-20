@@ -23,32 +23,6 @@ const popups = document.querySelectorAll('.popup');
 const avatarContainer = document.querySelector('.profile__avatar-container');
 const avatar = document.querySelector('.profile__avatar');
 const popupUpdate = document.querySelector('.popup-update');
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
 const validationSettings = {
   formSelector: '.form',
   inputSelector: '.form__input',
@@ -66,6 +40,7 @@ import { openPopup, closePopup } from './utils.js';
 import createCard from './card.js';
 import {enableValidation} from "./validate.js";
 import { handleCardFormSubmit, handleProfileFormSubmit, handleAvatarUpdate } from './modal.js';
+import { getInitialCards, getInformationAboutMe } from './api.js';
 
 // Логика управления элементами
 // Открыли popup контейнеры
@@ -92,9 +67,18 @@ formCard.addEventListener('submit', handleCardFormSubmit);
 popupUpdate.addEventListener('submit', handleAvatarUpdate);
 
 // Добавление 6 карточек с помощью JS
-for (let i = 0; i < initialCards.length; i++) {
-  elements.append(createCard(initialCards[i].link, initialCards[i].name));
-}
+getInitialCards().then(data => {
+  for (let i = 0; i < data.length; i++) {
+    elements.append(createCard(data[i].link, data[i].name, data[i].likes, data[i].owner._id, data[i]._id));
+  }
+});
+
+// Отображение информации о пользователе с сервера
+getInformationAboutMe().then(data => {
+  nameProfile.textContent = data.name;
+  jobProfile.textContent = data.about;
+  avatar.src = data.avatar;
+});
 
 // Закрытие popup контейнера с помощью Escape и кликом на оверлей
 popups.forEach((popup) => {
