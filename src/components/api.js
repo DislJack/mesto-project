@@ -107,4 +107,20 @@ function updateAvatar(avatarPicture) {
     })
 }
 
-export {getInitialCards, getInformationAboutMe, updateInformationAboutMe, publishNewCard, deleteCard, putLikeOnCard, deleteLikeOnCard, updateAvatar};
+function renderLoadingCard(button, isLoading) {
+  if (isLoading) {
+    button.textContent = 'Сохранение...';
+  } else {
+    button.textContent = 'Создать';
+  }
+}
+
+function renderLoadingUpdate(button, isLoading) {
+  if (isLoading) {
+    button.textContent = 'Сохранение...';
+  } else {
+    button.textContent = 'Сохранить';
+  }
+}
+
+export {getInitialCards, getInformationAboutMe, updateInformationAboutMe, publishNewCard, deleteCard, putLikeOnCard, deleteLikeOnCard, updateAvatar, renderLoadingCard, renderLoadingUpdate};
