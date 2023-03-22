@@ -19,6 +19,7 @@
 
 @import url(../blocks/profile/profile.css); /* Flex, ширина блока, отступы и позиционирование внутренних элементов */
 @import url(../blocks/profile/__container/profile__container.css); /* Flex для расположения внутренних элементов */
+@import url(../blocks/profile/__avatar-container/profile__avatar-container.css); /* Маска для картинки */
 @import url(../blocks/profile/__avatar/profile__avatar.css); /* Аватарка для фотографии иследователя */
 @import url(../blocks/profile/__info/profile__info.css); /* Блок с Flex элементами, задана ширина через flex-basis. */
 @import url(../blocks/profile/__heading-name/profile__heading-name.css); /* Стили для имени иследователя */
@@ -34,9 +35,13 @@
 @import url(../blocks/element/__description/element__description.css); /* Flex, отступы и расположение в пространстве элементов. */
 @import url(../blocks/element/__title/element__title.css); /* Стили для заголовка и отступы */
 @import url(../blocks/element/__like/element__like.css); /* Картинка для кнопки, её позиционирование и фон с отступами. */
+@import url(../blocks/element/__like-container/element__like-container.css); /* Контейнер для лайков */
+@import url(../blocks/element/__like-count/element__like-count.css); /* Счётчик лайков */
+@import url(../blocks/element/__like-count/_active/element__like-count_active.css); /* Активирование счётчика лайков */
 @import url(../blocks/element/__like/_active/element__like_active.css); /* Чёрное, залитое сердечка */
 @import url(../blocks/element/__delete/element__delete.css); /* Удаление элемента */
 @import url(../blocks/element/__overlay/element__overlay.css); /* Оверлей на картинку */
+@import url(../blocks/element/__delete/_disabled/element__delete_disabled.css); /* Неактивное состояние удаления карточки */
 
 /* Импорт подвала */
 
