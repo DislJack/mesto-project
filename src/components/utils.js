@@ -1,20 +1,31 @@
 // Функция открытия popup контейнеров
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  document.addEventListener('keydown', closeByEscape);
+  document.addEventListener('keydown', (evt) => {
+    closeByEscape(evt, popup);
+  });
 }
 
 // функция закрытия popup контейнеров
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closeByEscape);
+  document.removeEventListener('keydown', (evt, popup) => {
+    closeByEscape(evt, popup);
+  });
 }
 
-function closeByEscape(evt) {
+function closeByEscape(evt, popup) {
   if (evt.key === 'Escape') {
-    const popupOpened = document.querySelector('.popup_opened');
-    closePopup(popupOpened);
+    closePopup(popup);
   }
 }
 
-export {openPopup, closePopup};
+function renderLoading(button, isLoading, buttonText, loadingText) {
+  if (isLoading) {
+    button.textContent = loadingText;
+  } else {
+    button.textContent = buttonText;
+  }
+}
+
+export {openPopup, closePopup, renderLoading};
