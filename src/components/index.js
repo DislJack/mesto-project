@@ -1,7 +1,7 @@
 import '../pages/index.css';
 
 // Переменные и постоянные
-const formElement = document.querySelector('form[name=form]');
+const profileForm = document.forms["profile-form"];
 const nameInput = document.querySelector('input[name=name]');
 const jobInput = document.querySelector('input[name=job]');
 const profilePopup = document.querySelector('.profile-popup');
@@ -13,7 +13,7 @@ const closeButtons = document.querySelectorAll('.form__close-button');
 const elements = document.querySelector('.elements');
 const titleInput = document.querySelector('input[name=name-place]');
 const linkInput = document.querySelector('input[name=link]');
-const formCard = document.querySelector('form[name=formCard]');
+const cardForm = document.forms['card-form'];
 const elementTemplate = document.querySelector('#element').content;
 const figureImage = document.querySelector('.figure__image');
 const figureCaption = document.querySelector('.figure__caption');
@@ -22,7 +22,9 @@ const jobProfile = document.querySelector('.profile__job');
 const popups = document.querySelectorAll('.popup');
 const avatarContainer = document.querySelector('.profile__avatar-container');
 const avatar = document.querySelector('.profile__avatar');
+const updateForm = document.forms['update'];
 const popupUpdate = document.querySelector('.popup-update');
+const avatarInput = popupUpdate.querySelector('.form__input');
 const validationSettings = {
   formSelector: '.form',
   inputSelector: '.form__input',
@@ -31,16 +33,17 @@ const validationSettings = {
   inputErrorClass: 'form__input_type_error',
   errorClass: 'form__input-error_active'
 }
-const inputListCards = Array.from(formCard.querySelectorAll(validationSettings.inputSelector));
-const submitButtonCards = formCard.querySelector(validationSettings.submitButtonSelector);
+const inputListCards = Array.from(cardForm.querySelectorAll(validationSettings.inputSelector));
+const submitButtonCards = cardForm.querySelector(validationSettings.submitButtonSelector);
+let userId;
 
-export {elementTemplate, elements, linkInput, titleInput, addPopup, figureImage, figureCaption, picturePopup, nameProfile, jobProfile, nameInput, jobInput, profilePopup, validationSettings, inputListCards, submitButtonCards ,popupUpdate, avatar};
+export {elementTemplate, elements, linkInput, titleInput, addPopup, figureImage, figureCaption, picturePopup, nameProfile, jobProfile, nameInput, jobInput, profilePopup, validationSettings, inputListCards, submitButtonCards ,popupUpdate, avatar, avatarInput};
 
 import { openPopup, closePopup } from './utils.js';
 import createCard from './card.js';
 import {enableValidation} from "./validate.js";
 import { handleCardFormSubmit, handleProfileFormSubmit, handleAvatarUpdate } from './modal.js';
-import { getInitialCards, getInformationAboutMe } from './api.js';
+import { getInitialCards, getInformationAboutMe, findError } from './api.js';
 
 // Логика управления элементами
 // Открыли popup контейнеры
@@ -62,25 +65,26 @@ avatarContainer.addEventListener('click', () => {
 });
 
 // Изменение данных в форме при сохранении формы
-formElement.addEventListener('submit', handleProfileFormSubmit);
-formCard.addEventListener('submit', handleCardFormSubmit);
-popupUpdate.addEventListener('submit', handleAvatarUpdate);
+profileForm.addEventListener('submit', handleProfileFormSubmit);
+cardForm.addEventListener('submit', handleCardFormSubmit);
+updateForm.addEventListener('submit', handleAvatarUpdate);
 
-// Добавление 6 карточек с помощью JS
-getInitialCards().then(data => {
-  for (let i = 0; i < data.length; i++) {
-    elements.append(createCard(data[i].link, data[i].name, data[i].likes, data[i].owner._id, data[i]._id));
-  }
-});
+// Загрузка данный с сервера о карточках и пользователе
+Promise.all([getInformationAboutMe(), getInitialCards()])
+  .then(([userData, cards]) => {
+    // Отображение информации о пользователе с сервера
+    nameProfile.textContent = userData.name;
+    jobProfile.textContent = userData.about;
+    avatar.src = userData.avatar;
+    userId = userData._id;
+    // Добавление карточек с помощью JS
+    for (let i = 0; i < cards.length; i++) {
+      elements.append(createCard(cards[i].link, cards[i].name, cards[i].likes, cards[i].owner._id, cards[i]._id, userId));
+    }
+  })
+  .catch(findError);
 
-// Отображение информации о пользователе с сервера
-getInformationAboutMe().then(data => {
-  nameProfile.textContent = data.name;
-  jobProfile.textContent = data.about;
-  avatar.src = data.avatar;
-});
-
-// Закрытие popup контейнера с помощью Escape и кликом на оверлей
+// Закрытие popup контейнера кликом на оверлей
 popups.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
     closePopup(evt.target);
