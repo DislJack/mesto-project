@@ -6,34 +6,29 @@ const config = {
   }
 }
 
+function checkResponse(res) {
+  if (res.ok) {
+    return res.json();
+  }
+  return Promise.reject(`Ошибка: ${res.status}`);
+}
+
+function findError(err) {
+  console.log(`Ошибка: ${err}`);
+}
+
 function getInitialCards() {
   return fetch(`${config.baseUrl}/cards`, {
     headers: config.headers
   })
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
-    .catch(err => {
-      console.log(err);
-    });
+    .then(checkResponse);
 }
 
 function getInformationAboutMe() {
   return fetch(`${config.baseUrl}/users/me`, {
     headers: config.headers
   })
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
-    .catch(err => {
-      console.log(err);
-    })
+    .then(checkResponse);
 }
 
 function updateInformationAboutMe(newName, newJob) {
@@ -44,10 +39,7 @@ function updateInformationAboutMe(newName, newJob) {
       name: newName,
       about: newJob
     })
-  })
-    .catch(err => {
-      console.log(err);
-    })
+  }).then(checkResponse);
 }
 
 function publishNewCard(cardName, cardLink) {
@@ -58,40 +50,28 @@ function publishNewCard(cardName, cardLink) {
       name: cardName,
       link: cardLink
     })
-  })
-    .catch(err => {
-      console.log(err);
-    })
+  }).then(checkResponse);
 }
 
 function deleteCard(cardId) {
   return fetch(`${config.baseUrl}/cards/${cardId}`, {
     method: 'DELETE',
     headers: config.headers
-  })
-    .catch(err => {
-      console.log(err);
-    })
+  }).then(checkResponse);
 }
 
 function putLikeOnCard(cardId) {
   return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
     method: 'PUT',
     headers: config.headers
-  })
-    .catch(err => {
-      console.log(err);
-    })
+  }).then(checkResponse);
 }
 
 function deleteLikeOnCard(cardId) {
   return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
     method: 'DELETE',
     headers: config.headers
-  })
-    .catch(err => {
-      console.log(err);
-    })
+  }).then(checkResponse);
 }
 
 function updateAvatar(avatarPicture) {
@@ -101,26 +81,7 @@ function updateAvatar(avatarPicture) {
     body: JSON.stringify({
       avatar: avatarPicture
     })
-  })
-    .catch(err => {
-      console.log(err);
-    })
+  }).then(checkResponse);
 }
 
-function renderLoadingCard(button, isLoading) {
-  if (isLoading) {
-    button.textContent = 'Сохранение...';
-  } else {
-    button.textContent = 'Создать';
-  }
-}
-
-function renderLoadingUpdate(button, isLoading) {
-  if (isLoading) {
-    button.textContent = 'Сохранение...';
-  } else {
-    button.textContent = 'Сохранить';
-  }
-}
-
-export {getInitialCards, getInformationAboutMe, updateInformationAboutMe, publishNewCard, deleteCard, putLikeOnCard, deleteLikeOnCard, updateAvatar, renderLoadingCard, renderLoadingUpdate};
+export {getInitialCards, getInformationAboutMe, updateInformationAboutMe, publishNewCard, deleteCard, putLikeOnCard, deleteLikeOnCard, updateAvatar, findError};
