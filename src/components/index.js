@@ -35,9 +35,10 @@ const validationSettings = {
 }
 const inputListCards = Array.from(cardForm.querySelectorAll(validationSettings.inputSelector));
 const submitButtonCards = cardForm.querySelector(validationSettings.submitButtonSelector);
+const updateFormButton = updateForm.querySelector(validationSettings.submitButtonSelector);
 let userId;
 
-export {elementTemplate, elements, linkInput, titleInput, addPopup, figureImage, figureCaption, picturePopup, nameProfile, jobProfile, nameInput, jobInput, profilePopup, validationSettings, inputListCards, submitButtonCards ,popupUpdate, avatar, avatarInput};
+export {elementTemplate, elements, linkInput, titleInput, addPopup, figureImage, figureCaption, picturePopup, nameProfile, jobProfile, nameInput, jobInput, profilePopup, validationSettings, inputListCards, submitButtonCards ,popupUpdate, avatar, avatarInput, updateFormButton};
 
 import { openPopup, closePopup } from './utils.js';
 import createCard from './card.js';
@@ -87,7 +88,9 @@ Promise.all([getInformationAboutMe(), getInitialCards()])
 // Закрытие popup контейнера кликом на оверлей
 popups.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
-    closePopup(evt.target);
+    if (evt.target === popup) {
+      closePopup(evt.target);
+    }
   });
 });
 

@@ -4,7 +4,6 @@ import { deleteCard, putLikeOnCard, deleteLikeOnCard, findError } from "./api.js
 
 // Проверка соврападания id чтобы отключить кнопку удаления
 function checkIdOwner(deleteCan, cardOwner, userId) {
-  // Страшные цифры - это id пользователя, которые я просто так передал, чтобы сравнивать со всеми id других пользователей
   if (cardOwner !== userId) {
     deleteCan.classList.add('element__delete_disabled');
     deleteCan.disabled = true;
@@ -35,16 +34,16 @@ function toggleButtonLikes(cardLikes, likeButton, likeCount, cardId, userId) {
     }
   });
 
-  // Часть описывающая поведения подсчёта количества лайков и их закрашивание
+  // Установка и снятие лайка с карточки
   likeButton.addEventListener('click', function (evt) {
-    if (count === 0) {
-      likeCount.classList.add('element__like-count_active');
-    }
     if (!evt.target.classList.contains('element__like_active')) {
       putLikeOnCard(cardId)
         .then(data => {
           evt.target.classList.add('element__like_active');
           likeCount.textContent = data.likes.length;
+          if (!likeCount.classList.contains('element__like-count_active')) {
+            likeCount.classList.add('element__like-count_active');
+          }
         })
         .catch(findError);
     } else {
@@ -52,11 +51,11 @@ function toggleButtonLikes(cardLikes, likeButton, likeCount, cardId, userId) {
         .then(data => {
           evt.target.classList.remove('element__like_active');
           likeCount.textContent = data.likes.length;
+          if (data.likes.length === 0) {
+            likeCount.classList.remove('element__like-count_active');
+          }
         })
         .catch(findError);
-    }
-    if (count === 0) {
-      likeCount.classList.remove('element__like-count_active');
     }
   });
 }
